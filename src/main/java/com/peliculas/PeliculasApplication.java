@@ -1,13 +1,43 @@
 package com.peliculas;
 
+import com.peliculas.com.peliculas.services.PeliculasService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 @SpringBootApplication
-public class PeliculasApplication {
+public class PeliculasApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PeliculasApplication.class, args);
-	}
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+
+    @Autowired
+    private PeliculasService peliculasService;
+
+    public static void main(String[] args) {
+        SpringApplication.run(PeliculasApplication.class, args);
+    }
+
+
+    @Override
+    public void run(String... args) throws Exception {
+
+
+        peliculasService.insertData();
+
+        System.out.println(peliculasService.mostrarPeliculasDetalle());
+
+
+
+
+
+
+    }
+
 
 }
+
